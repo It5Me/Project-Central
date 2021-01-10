@@ -1,11 +1,37 @@
 body{
-  margin:0;
-  padding:  0;
+  /* margin:0auto;
+  padding: 0px;
   font-family: italic;
-  background: url("./img/bg-color.jpg") no-repeat; 
-  background-size:100%;
-  background-position: bottom;
-  background-color: rgb(30, 161, 161);
-  
+  background:  url("./img/bg-color.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: grey;
+  height:100%; */
 
+  background: url("./img/bg-color.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  max-height: 50%;
+  width: auto;
+  max-width:auto;
+  height:50%
 }
+form{
+  padding:20px;
+  margin-top:60px;
+}
+form button, form h5{
+  margin: 20px 0;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+  border-color: #ec407a;
+  box-shadow: none;
+}
+

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import  './CreateProject.css'
 const CreateProject =()=> {
     const [title,setTitle]=useState('');
     const [content,setContent]=useState('');
@@ -24,15 +24,16 @@ const CreateProject =()=> {
         <div className="container">
             <form onSubmit={handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Creaat Project</h5>
-                <div className="input-field">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" id="title" onChange={handleChange} />
+                <div className="input-field ">
+                    <label htmlFor="title test"><p className="test">Title</p></label>
+                    <input type="text" id="title" onChange={handleChange} autoComplete="off"  />
                 </div>
-                <div className="input-field">
-                    <label htmlFor="content">Project Content</label>
-                    <input type="text" id="content" onChange={handleChange} />
+                <div className="input-field ">
+                    <textarea id="content" className="materialize-textarea" onChange={handleChange}></textarea>
+                    <label htmlFor="content "><p className="test">Project Content </p></label>
+                    {/* <input type="text" id="content" onChange={handleChange} /> */}
                 </div>
-                <div className="input-field">
+                <div className="input-field test">
                     <button className="btn pink lighten-1 z-depth-0">Create</button>
                 </div>
             </form>
