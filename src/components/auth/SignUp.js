@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 
-const SignIn =()=> {
+const SignUp =()=> {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
+    const [firstName,setFirstName]=useState('');
+    const [lastName,setLastName]=useState('');
     const handleChange = (e) =>{
-        console.log(e.target.id)
         switch(e.target.id){
             case 'email' :
                 setEmail(e.target.value)
@@ -12,13 +13,19 @@ const SignIn =()=> {
             case 'password':
                 setPassword(e.target.value)
                 return;
+            case 'firstname':
+                setFirstName(e.target.value)
+                return;
+            case 'lastname':
+                setLastName(e.target.value)
+                return;    
             default:
                 return;
         }
     }
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(email,password)
+        console.log(email,password,firstName,lastName)
     }
     return (
         <div className="container">
@@ -33,6 +40,14 @@ const SignIn =()=> {
                     <input type="password" id="password" onChange={handleChange} />
                 </div>
                 <div className="input-field">
+                    <label htmlFor="firstname">First Name</label>
+                    <input type="text" id="firstname" onChange={handleChange} />
+                </div>
+                <div className="input-field">
+                    <label htmlFor="lastname">Last Naem</label>
+                    <input type="text" id="lastname" onChange={handleChange} />
+                </div>
+                <div className="input-field">
                     <button className="btn pink lighten-1 z-depth-0">Login</button>
                 </div>
             </form>
@@ -40,4 +55,4 @@ const SignIn =()=> {
     )
 }
 
-export default SignIn
+export default SignUp
