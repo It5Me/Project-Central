@@ -1,7 +1,7 @@
 const initState={}
 
 const authReducer = (state = initState,action) =>{
-    return
+    return state
 }
 
 export default authReducer
