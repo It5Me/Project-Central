@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import  './CreateProject.css'
-const CreateProject =()=> {
+import {connect} from 'react-redux'
+import {createProject} from '../../store/actions/projectAction'
+const CreateProject =(props)=> {
     const [title,setTitle]=useState('');
     const [content,setContent]=useState('');
     const handleChange = (e) =>{
-        console.log(e.target.id)
+        // console.log(e.target.id)
         switch(e.target.id){
             case 'title' :
                 setTitle(e.target.value)
@@ -18,7 +20,8 @@ const CreateProject =()=> {
     }
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(title,content)
+        // console.log(title,content)
+        console.log(props.createProject({title,content}))
     }
     return (
         <div className="container">
@@ -40,5 +43,10 @@ const CreateProject =()=> {
         </div>
     )
 }
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        createProject:(project) => dispatch(createProject(project))
+    }
+}
 
-export default CreateProject
+export default connect(null,mapDispatchToProps)(CreateProject)
