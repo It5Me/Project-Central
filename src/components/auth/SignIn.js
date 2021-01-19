@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import '../../index.css'
-const SignIn =()=> {
+import {connect} from 'react-redux'
+import {signIn} from '../../store/actions/authActions'
+const SignIn =(props)=> {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const handleChange = (e) =>{
@@ -18,7 +20,7 @@ const SignIn =()=> {
     }
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(email,password)
+        props.signIn({email,password})
     }
     return (
         <div className="container ">
@@ -39,5 +41,15 @@ const SignIn =()=> {
         </div>
     )
 }
+const mapStateToProps = (state) =>{
+    return {
+        authError: state.auth.authError
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return{
+        signIn: (creds) => dispatch(signIn(creds))
+    }
+}
 
-export default SignIn
+export default connect(null,mapDispatchToProps)(SignIn)
