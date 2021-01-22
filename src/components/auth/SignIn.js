@@ -6,7 +6,6 @@ const SignIn =(props)=> {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const handleChange = (e) =>{
-        console.log(e.target.id)
         switch(e.target.id){
             case 'email' :
                 setEmail(e.target.value)
@@ -22,7 +21,7 @@ const SignIn =(props)=> {
         e.preventDefault();
         props.signIn({email,password})
     }
-    const {authError} = props
+    const {authError} = props 
     return (
         <div className="container ">
             <form onSubmit={handleSubmit} className="white">
