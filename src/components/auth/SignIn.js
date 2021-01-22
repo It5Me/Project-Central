@@ -22,6 +22,7 @@ const SignIn =(props)=> {
         e.preventDefault();
         props.signIn({email,password})
     }
+    const {authError} = props
     return (
         <div className="container ">
             <form onSubmit={handleSubmit} className="white">
@@ -36,6 +37,9 @@ const SignIn =(props)=> {
                 </div>
                 <div className="input-field">
                     <button className="btn pink lighten-1 z-depth-0">Login</button>
+                    <div className="red-text center">
+                        {props.authError ? <p>{authError}</p> : null}
+                    </div>
                 </div>
             </form>
         </div>
@@ -52,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null,mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn)
