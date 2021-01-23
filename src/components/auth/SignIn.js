@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import '../../index.css'
 import {connect} from 'react-redux'
 import {signIn} from '../../store/actions/authActions'
+import { Redirect } from 'react-router-dom'
 const SignIn =(props)=> {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
@@ -21,10 +22,12 @@ const SignIn =(props)=> {
         e.preventDefault();
         props.signIn({email,password})
     }
-    const {authError} = props 
+    const {authError,auth} = props
+    
+    if(auth.uid) return <Redirect to ='/'/>
     return (
         <div className="container ">
-            <form onSubmit={handleSubmit} className="white">
+        {auth.isLoaded  && <form onSubmit={handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3 ">Sign In</h5>
                 <div className="input-field">
                     <label htmlFor="email">Email</label>
@@ -40,13 +43,15 @@ const SignIn =(props)=> {
                         {props.authError ? <p>{authError}</p> : null}
                     </div>
                 </div>
-            </form>
+            </form>}
+            
         </div>
     )
 }
 const mapStateToProps = (state) =>{
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        auth: state.firebase.auth
     }
 }
 const mapDispatchToProps = (dispatch) => {

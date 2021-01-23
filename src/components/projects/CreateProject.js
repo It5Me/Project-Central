@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import  './CreateProject.css'
 import {connect} from 'react-redux'
 import {createProject} from '../../store/actions/projectAction'
+import { Redirect } from 'react-router-dom'
 const CreateProject =(props)=> {
     const [title,setTitle]=useState('');
     const [content,setContent]=useState('');
@@ -23,6 +24,10 @@ const CreateProject =(props)=> {
         // console.log(title,content)
         console.log(props.createProject({title,content}))
     }
+
+    const {auth}=props
+
+    if (!auth.uid) return <Redirect to ='/signin'/>
     return (
         <div className="container">
             <form onSubmit={handleSubmit} className="white">
@@ -43,10 +48,15 @@ const CreateProject =(props)=> {
         </div>
     )
 }
+const mapStateToProps = (state) =>{
+    return {
+        auth: state.firebase.auth
+    }
+}
 const mapDispatchToProps = (dispatch) =>{
     return{
         createProject:(project) => dispatch(createProject(project))
     }
 }
 
-export default connect(null,mapDispatchToProps)(CreateProject)
+export default connect(mapStateToProps,mapDispatchToProps)(CreateProject)

@@ -7,12 +7,13 @@ import {compose} from 'redux'
 // import {lifecycle} from 'recompose';
 // import { withFirestore, isLoaded, isEmpty } from 'react-redux-firebase'
 
-const ProjectDetail = ({firestore,projects,id}) => {
+const ProjectDetail = ({firestore,projects,id,auth},props) => {
     // const {project} = props;
     // console.log(props.projects)
     
     const project = projects ? projects[id] : null
-    
+    // const {auth}=props
+    if (!auth.uid) return <Redirect to ='/signin'/>
     if (project){
         return(
         <div className="container section project-details">
@@ -41,11 +42,12 @@ const ProjectDetail = ({firestore,projects,id}) => {
 const mapStateToProps = (state,ownProps) =>{
     const id= ownProps.match.params.id
     const projects=state.firestore.data.projects;
+    // const auth=state.firebase.auth
     // console.log(state.firestore) 
     return{
-        
         projects:projects,
-        id:id
+        id:id,
+        auth:state.firebase.auth
     }
 }
 
