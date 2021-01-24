@@ -22,7 +22,9 @@ const CreateProject =(props)=> {
     const handleSubmit = (e) =>{
         e.preventDefault();
         // console.log(title,content)
-        console.log(props.createProject({title,content}))
+        props.createProject({title,content})
+        props.history.push('/') 
+
     }
 
     const {auth}=props
