@@ -1,0 +1,20 @@
+.textnotification{
+    background-color:#839cf0;
+    border-radius: 12px;
+    padding:25px;
+
+}
+.contentnotification{
+    background-color:#424242;
+    /* border-radius:15px; */
+   
+}
+.notification{
+    padding-left : 13px;
+    color:rgb(0, 0, 0);
+}
+.card-title{
+    color:aliceblue;
+    font-style: ;
+    padding-left:10px
+}
