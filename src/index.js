@@ -12,27 +12,34 @@ import {reactReduxFirebase,getFirebase, ReactReduxFirebaseProvider} from 'react-
 import firebaseConfig from './config/firebaseConfig'
 import firebase from 'firebase/app'
 
-// const store= createStore(rootReducer,
-// compose(
-//   applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
-//   reduxFirestore(firebaseConfig),
-//   reactReduxFirebase(firebaseConfig)
-//   )
-// );
+
 const store= createStore(rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({getFirestore,getFirebase})),
-    reduxFirestore(firebase,firebaseConfig)
+    reduxFirestore(firebase,firebaseConfig),
     // reactReduxFirebase(firebaseConfig,{attachAuthIsReady:true})
     )
 );
 
+const profileSpecificProps = {
+  userProfile: 'users',
+  useFirestoreForProfile: true 
+}
+
+
 const rrfProps = {
   firebase,
-  config: firebaseConfig,
+  config: profileSpecificProps,
   dispatch: store.dispatch,
   createFirestoreInstance
 };
+
+// const rrfProps = {
+//   firebase,
+//   config: firebaseConfig,
+//   dispatch: store.dispatch,
+//   createFirestoreInstance
+// };
 
 
 
