@@ -4,21 +4,22 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
+import './ProjectDetail.css'
 
 const ProjectDetail = (props) => {
     const { project, auth } = props;
     if (!auth.uid) return <Redirect to ='/signin'/>
     if (project) {
         return (
-            <div className="container section project-details">
-                <div className="card z-depth-0">
-                    <div className="card-content">
+            <div className="container section project-details boxdetail fixboxdetail">
+                <div className="card z-depth-0 addcardcontent">
+                    <div className="card-content ">
                         <span className="card-title"> { project.title } </span>
                         <p>{ project.content }</p>
                     </div>
-                    <div className="card-action gret lighten-4 grey-text">
-                        <div>Posted By {project.authorFirstName} {project.authorLastName} </div>
-                        <div>{moment(project.createdAt.toDate()).calendar()}</div>
+                    <div className="card-action gret lighten-4 grey-text ">
+                        <div className="textpost">Posted By {project.authorFirstName} {project.authorLastName} </div>
+                        <div className="textdate">{moment(project.createdAt.toDate()).calendar()}</div>
                     </div>
                 </div>
             </div>
